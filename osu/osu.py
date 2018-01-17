@@ -1060,8 +1060,9 @@ async def get_beatmap(key, api:str, beatmap_id):
     url_params.append(parameterize_key(key))
     url_params.append(parameterize_id("b", beatmap_id))
 
-    async with aiohttp.get(build_request(url_params, "https://{}/api/get_beatmaps?".format(api))) as resp:
-        return await resp.json()
+    async with aiohttp.ClientSession() as session: 
+        async with session.get(build_request(url_params, "https://{}/api/get_beatmaps?".format(api))) as resp:
+            return await resp.json()
 
 # Gets the beatmap set
 async def get_beatmapset(key, api:str, set_id):
@@ -1070,8 +1071,9 @@ async def get_beatmapset(key, api:str, set_id):
     url_params.append(parameterize_key(key))
     url_params.append(parameterize_id("s", set_id))
 
-    async with aiohttp.get(build_request(url_params, "https://{}/api/get_beatmaps?".format(api))) as resp:
-        return await resp.json()
+    async with aiohttp.ClientSession() as session: 
+        async with session.get(build_request(url_params, "https://{}/api/get_beatmaps?".format(api))) as resp:
+            return await resp.json()
 
 # Grabs the scores
 async def get_scores(key, api:str, beatmap_id, user_id, mode):
@@ -1082,8 +1084,9 @@ async def get_scores(key, api:str, beatmap_id, user_id, mode):
     url_params.append(parameterize_id("u", user_id))
     url_params.append(parameterize_mode(mode))
 
-    async with aiohttp.get(build_request(url_params, "https://{}/api/get_scores?".format(api))) as resp:
-        return await resp.json()
+    async with aiohttp.ClientSession() as session: 
+        async with session.get(build_request(url_params, "https://{}/api/get_scores?".format(api))) as resp:
+            return await resp.json()
 
 async def get_user(key, api:str, user_id, mode):
     url_params = []
@@ -1092,8 +1095,9 @@ async def get_user(key, api:str, user_id, mode):
     url_params.append(parameterize_id("u", user_id))
     url_params.append(parameterize_mode(mode))
 
-    async with aiohttp.get(build_request(url_params, "https://{}/api/get_user?".format(api))) as resp:
-        return await resp.json()
+    async with aiohttp.ClientSession() as session: 
+        async with session.get(build_request(url_params, "https://{}/api/get_user?".format(api))) as resp:
+            return await resp.json()
 
 async def get_user_best(key, api:str, user_id, mode, limit):
     url_params = []
@@ -1103,8 +1107,9 @@ async def get_user_best(key, api:str, user_id, mode, limit):
     url_params.append(parameterize_mode(mode))
     url_params.append(parameterize_limit(limit))
 
-    async with aiohttp.get(build_request(url_params, "https://{}/api/get_user_best?".format(api))) as resp:
-        return await resp.json()
+    async with aiohttp.ClientSession() as session: 
+        async with session.get(build_request(url_params, "https://{}/api/get_user_best?".format(api))) as resp:
+            return await resp.json()
 
 # Returns the user's ten most recent plays.
 async def get_user_recent(key, api:str, user_id, mode):
@@ -1114,8 +1119,9 @@ async def get_user_recent(key, api:str, user_id, mode):
     url_params.append(parameterize_id("u", user_id))
     url_params.append(parameterize_mode(mode))
 
-    async with aiohttp.get(build_request(url_params, "https://{}/api/get_user_recent?".format(api))) as resp:
-        return await resp.json()
+    async with aiohttp.ClientSession() as session: 
+        async with session.get(build_request(url_params, "https://{}/api/get_user_recent?".format(api))) as resp:
+            return await resp.json()
 
 # Returns the full API request URL using the provided base URL and parameters.
 def build_request(url_params, url):
